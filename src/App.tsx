@@ -168,7 +168,7 @@ export default function App() {
         {/* Tagline - Original lower position */}
         <div 
           className="absolute left-1/2 -translate-x-1/2 text-center w-full px-6 z-10 select-none pointer-events-none flex flex-col items-center gap-2" 
-          style={{ bottom: '14%' }}
+          style={{ bottom: '12%' }}
         >
           <span 
             className="block font-sans uppercase"
