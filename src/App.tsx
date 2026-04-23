@@ -189,10 +189,26 @@ export default function App() {
               color: '#333333'
             }}
           >
-            Donde termina lo humano, empieza lo posible.
+            El empleado que no te va a fallar
           </span>
         </div>
       </main>
+
+      <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px', padding: '0 24px' }} className="relative z-50">
+        <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=hero" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+          QUIERO VER CÓMO FUNCIONARÍA EN MI NEGOCIO &rarr;
+        </a>
+        <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
+          Sin compromiso &middot; 30 min &middot; Si no encajamos, te lo decimos en 5 min
+        </p>
+      </div>
+
+      {/* Floating mobile button */}
+      <div id="cta-flotante" className="md:hidden fixed bottom-0 left-0 w-full z-[999] p-3 text-center bg-[#111111] border-t border-[#222222]">
+        <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=flotante" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] py-3 rounded hover:bg-brand-white transition-colors duration-300 block w-full text-sm">
+          RESERVAR MIS 30 MIN &rarr;
+        </a>
+      </div>
 
       {/* Logo Strip Section */}
       <section className="w-full border-y border-ink bg-[#F5F5F5] z-50 relative">

@@ -76,6 +76,45 @@ function AnimatedCounter({ end, text, prefix = "", suffix = "", isRange = false 
   );
 }
 
+function AnimatedBadgeNumber({ end }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      const [entry] = entries;
+      if (entry.isIntersecting && !hasAnimated.current) {
+        hasAnimated.current = true;
+        let startTimestamp = null;
+        const duration = 1500;
+        
+        const step = (timestamp) => {
+          if (!startTimestamp) startTimestamp = timestamp;
+          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+          const easeProgress = 1 - Math.pow(1 - progress, 3);
+          setCount(easeProgress * end);
+          if (progress < 1) {
+            window.requestAnimationFrame(step);
+          } else {
+            setCount(end);
+          }
+        };
+        window.requestAnimationFrame(step);
+      }
+    }, { threshold: 0.1 });
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [end]);
+
+  return (
+    <span ref={ref}>
+      +{Math.floor(count).toLocaleString('es-ES')}€/mes
+    </span>
+  );
+}
+
 function ProgressLine() {
   const lineRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
@@ -118,9 +157,9 @@ export default function LandingSections() {
       {/* 2. BARRA DE ESTADÍSTICAS */}
       <section id="stats" className="w-full bg-brand-white border-y border-brand-border py-16 md:py-24 relative content-layer">
         <div className="max-w-[1440px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-          <AnimatedCounter end={72} text="Pymes españolas sin IA (Microsoft · 02/2026)" suffix="%" />
-          <AnimatedCounter end={2880} text="Ahorro medio/mes por negocio automatizado" suffix="€" />
-          <AnimatedCounter end={8} text="ROI desde el primer mes" isRange={true} suffix="×" />
+          <AnimatedCounter end={72} text="Pymes españolas sin IA. Adelantate a tu competencia." suffix="%" />
+          <AnimatedCounter end={9880} text="Ahorro medio/mes por negocio automatizado" suffix="€" />
+          <AnimatedCounter end={12} text="ROI desde el primer mes" isRange={false} suffix="×" />
         </div>
       </section>
 
@@ -138,8 +177,8 @@ export default function LandingSections() {
               <div className="bg-brand-accent text-brand-black text-[0.7rem] uppercase font-bold px-3 py-1 rounded-full mb-6 flex items-center gap-2 tracking-wider">
                 <span>📞</span> LLAMADAS PERDIDAS
               </div>
-              <h3 className="font-serif font-semibold text-2xl text-brand-black mb-3">El 62% se pierden.</h3>
-              <p className="text-brand-gray">El 62% de las llamadas a negocios locales después de las 18:00 se pierden. Cada una son 150-400€ tirados a la basura.</p>
+              <h3 className="font-serif font-semibold text-2xl text-brand-black mb-3">Llamadas perdidas.</h3>
+              <p className="text-brand-gray">De las llamadas a negocios después de las 18:00 gran parte se pierden. Cada llamada tiene un valor estimado de 400€ tirados a la basura.</p>
             </div>
             
             {/* Card 2 */}
@@ -148,7 +187,7 @@ export default function LandingSections() {
                 <span>💬</span> WHATSAPPS SIN CONTESTAR
               </div>
               <h3 className="font-serif font-semibold text-2xl text-brand-black mb-3">2 minutos de paciencia.</h3>
-              <p className="text-brand-gray">El lead medio espera 2 minutos y se va. Tu equipo responde en 47. Tu competencia está cerrando lo que tú dejas abierto.</p>
+              <p className="text-brand-gray">Un equipo humano responde en 47 y mientras tanto tu competencia está cerrando lo que tú dejas abierto.</p>
             </div>
 
             {/* Card 3 */}
@@ -157,7 +196,7 @@ export default function LandingSections() {
                 <span>⏱️</span> HORAS MUERTAS
               </div>
               <h3 className="font-serif font-semibold text-2xl text-brand-black mb-3">18 horas semanales.</h3>
-              <p className="text-brand-gray">Tu gente pasa 18 horas a la semana haciendo lo mismo. Copiando datos. Mandando emails. Facturando. Esas horas cuestan 2.880€ al mes.</p>
+              <p className="text-brand-gray">Tu gente pasa 18 horas a la semana haciendo lo mismo. Copiando datos. Mandando emails. Facturando. Esas horas cuestan 9.880€ al mes.</p>
             </div>
           </div>
 
@@ -165,10 +204,19 @@ export default function LandingSections() {
             <h3 className="font-serif text-[clamp(2rem,3vw,3rem)] text-brand-black leading-tight">
               Esto no es un problema de IA. Es un problema de<br/>
               <span className="inline-block relative">
-                plata.
+                dinero.
                 <span className="absolute bottom-1 left-0 w-full h-[4px] bg-brand-accent -z-10"></span>
               </span> Y tiene solución.
             </h3>
+          </div>
+          
+          <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px' }} className="reveal">
+            <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=dolor" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+              CALCULAR CUÁNTO ESTOY PERDIENDO (GRATIS) &rarr;
+            </a>
+            <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
+              Sin compromiso &middot; 30 min &middot; Si no encajamos, te lo decimos en 5 min
+            </p>
           </div>
         </div>
       </section>
@@ -191,6 +239,15 @@ export default function LandingSections() {
           <p className="mt-12 text-lg text-brand-gray max-w-2xl mx-auto reveal">
             Esto lo puedes tener funcionando en tu negocio en menos de 14 días.
           </p>
+
+          <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px' }} className="reveal">
+            <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=demo" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+              QUIERO TENER ESTO MONTADO EN MI NEGOCIO YA &rarr;
+            </a>
+            <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
+              Sin compromiso &middot; 30 min &middot; Si no encajamos, te lo decimos en 5 min
+            </p>
+          </div>
         </div>
       </section>
 
@@ -199,47 +256,65 @@ export default function LandingSections() {
         <SectionGrain />
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-brand-black mb-16 max-w-4xl leading-tight reveal text-center md:text-left">
-            No somos una agencia de marketing con IA. Somos la agencia que automatiza todo lo demás.
+            Lo que un humano tarda 8 horas, nosotros lo hacemos en 8 segundos, sin bajas ni vacaciones.
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
             {/* Serv 1 */}
-            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group">
+            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group relative">
+              <div className="absolute top-6 right-6 bg-brand-accent text-brand-black text-[0.75rem] uppercase font-bold px-3 py-1 rounded-sm tracking-widest whitespace-nowrap">
+                <AnimatedBadgeNumber end={3200} />
+              </div>
               <div className="w-10 h-10 rounded-md bg-[#F5F5F5] flex items-center justify-center text-xl mb-6">📞</div>
               <h3 className="font-serif font-semibold text-xl text-brand-black mb-3">Agente de Voz IA</h3>
               <p className="text-brand-gray text-sm leading-relaxed">Contesta tu teléfono 24/7 con voz natural en español. Agenda citas, cualifica leads y traspasa a humano cuando hace falta.</p>
             </div>
             
             {/* Serv 2 */}
-            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group">
+            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group relative">
+              <div className="absolute top-6 right-6 bg-brand-accent text-brand-black text-[0.75rem] uppercase font-bold px-3 py-1 rounded-sm tracking-widest whitespace-nowrap">
+                <AnimatedBadgeNumber end={2800} />
+              </div>
               <div className="w-10 h-10 rounded-md bg-[#F5F5F5] flex items-center justify-center text-xl mb-6">💬</div>
               <h3 className="font-serif font-semibold text-xl text-brand-black mb-3">Chatbot WhatsApp & Web</h3>
-              <p className="text-brand-gray text-sm leading-relaxed">Tu cliente pregunta, la IA responde en 3 segundos. Integrado con CRM, calendario y pagos. Atención 24/7 sin contratar a nadie.</p>
+              <p className="text-brand-gray text-sm leading-relaxed">Tu cliente pregunta, la IA responde en 3 segundos. Integrado con tu sistema, calendario y pagos. Atención 24/7 sin contratar a nadie.</p>
             </div>
 
             {/* Serv 3 */}
-            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group">
+            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group relative">
+              <div className="absolute top-6 right-6 bg-brand-accent text-brand-black text-[0.75rem] uppercase font-bold px-3 py-1 rounded-sm tracking-widest whitespace-nowrap">
+                <AnimatedBadgeNumber end={4500} />
+              </div>
               <div className="w-10 h-10 rounded-md bg-[#F5F5F5] flex items-center justify-center text-xl mb-6">🎯</div>
-              <h3 className="font-serif font-semibold text-xl text-brand-black mb-3">AI SDR Outbound</h3>
-              <p className="text-brand-gray text-sm leading-relaxed">Encuentra leads, les escribe emails hiperpersonalizados con IA y te los entrega calientes. Cientos por semana, sin que muevas un dedo.</p>
+              <h3 className="font-serif font-semibold text-xl text-brand-black mb-3">Agente de IA</h3>
+              <p className="text-brand-gray text-sm leading-relaxed">Encuentra leads, les escribe emails hiperpersonalizados con IA y te los entrega calientes. Miles por semana, sin que muevas un dedo.</p>
             </div>
 
             {/* Serv 4 */}
-            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group">
+            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group relative">
+              <div className="absolute top-6 right-6 bg-brand-accent text-brand-black text-[0.75rem] uppercase font-bold px-3 py-1 rounded-sm tracking-widest whitespace-nowrap">
+                <AnimatedBadgeNumber end={1800} />
+              </div>
               <div className="w-10 h-10 rounded-md bg-[#F5F5F5] flex items-center justify-center text-xl mb-6">🧠</div>
-              <h3 className="font-serif font-semibold text-xl text-brand-black mb-3">Cerebro Interno (RAG)</h3>
+              <h3 className="font-serif font-semibold text-xl text-brand-black mb-3">Cerebro Interno</h3>
               <p className="text-brand-gray text-sm leading-relaxed">Tu propio ChatGPT privado, entrenado con tus manuales, SOPs y contratos. Tu equipo deja de perder tiempo buscando información.</p>
             </div>
 
             {/* Serv 5 */}
-            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group">
+            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group relative">
+              <div className="absolute top-6 right-6 bg-brand-accent text-brand-black text-[0.75rem] uppercase font-bold px-3 py-1 rounded-sm tracking-widest whitespace-nowrap">
+                <AnimatedBadgeNumber end={2200} />
+              </div>
               <div className="w-10 h-10 rounded-md bg-[#F5F5F5] flex items-center justify-center text-xl mb-6">🎬</div>
               <h3 className="font-serif font-semibold text-xl text-brand-black mb-3">Vídeos & UGC con IA</h3>
               <p className="text-brand-gray text-sm leading-relaxed">Avatares realistas, ads a escala y contenido diario sin grabar a nadie ni producir nada. Listo para redes y campañas.</p>
             </div>
 
             {/* Serv 6 */}
-            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group">
+            <div className="bg-brand-white border border-brand-border rounded-lg p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-sm hover:border-b-[3px] hover:border-b-brand-accent flex flex-col group relative">
+              <div className="absolute top-6 right-6 bg-brand-accent text-brand-black text-[0.75rem] uppercase font-bold px-3 py-1 rounded-sm tracking-widest whitespace-nowrap">
+                <AnimatedBadgeNumber end={3400} />
+              </div>
               <div className="w-10 h-10 rounded-md bg-[#F5F5F5] flex items-center justify-center text-xl mb-6">⚙️</div>
               <h3 className="font-serif font-semibold text-xl text-brand-black mb-3">Automatizaciones Operativas</h3>
               <p className="text-brand-gray text-sm leading-relaxed">Facturas, reportes, onboarding, seguimientos, clasificación de correos. Todo lo mecánico, delegado a una máquina que no se cansa.</p>
@@ -253,47 +328,47 @@ export default function LandingSections() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center md:text-left mb-16 reveal">
             <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-brand-black mb-4 leading-tight">
-              3 sectores. Cero distracción.
+              3 razones. Cero dudas.
             </h2>
             <p className="text-xl text-brand-gray custom-measure">
-              Nos especializamos en los nichos con mayor urgencia, mejor ROI y más volumen de ahorro.
+              Toda la IA que necesitas, enfocada en resultados inmediatos, eficiencia medible y ROI escalable.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 reveal-stagger">
-            {/* Sector 1 */}
+            {/* Card 1 */}
             <div className="bg-brand-bg border border-brand-border rounded-lg p-10 flex flex-col items-start relative overflow-hidden">
-              <div className="bg-brand-accent text-brand-black text-xs uppercase font-bold px-3 py-1.5 rounded-sm tracking-wider mb-8">MAYOR URGENCIA</div>
-              <div className="text-4xl mb-4">🏥</div>
-              <h3 className="font-serif text-3xl text-brand-black mb-2">Clínicas</h3>
-              <p className="text-brand-gray text-sm mb-6">Dentales, estéticas, fisio, veterinarias.</p>
-              <p className="font-semibold text-brand-black leading-relaxed mb-10">Recupera las 200+ llamadas al mes que estás perdiendo fuera de horario.</p>
+              <div className="bg-brand-accent text-brand-black text-xs uppercase font-bold px-3 py-1.5 rounded-sm tracking-wider mb-8">MAYOR EFICIENCIA</div>
+              <div className="text-4xl mb-4">⚙️</div>
+              <h3 className="font-serif text-3xl text-brand-black mb-2">Automatización</h3>
+              <p className="text-brand-gray text-sm mb-6">Tareas repetitivas, flujos internos, procesos manuales.</p>
+              <p className="font-semibold text-brand-black leading-relaxed mb-10">Elimina el trabajo que consume horas y no genera valor.</p>
               <div className="mt-auto w-full pt-6 border-t border-brand-border/50 text-sm text-brand-gray">
-                18h/sem automatizables · <span className="font-semibold text-brand-black">3.200€/mes</span> en ineficiencias
+                15h/sem ahorradas · <span className="font-semibold text-brand-black">desde 1.800€/mes</span>
               </div>
             </div>
 
-            {/* Sector 2 */}
+            {/* Card 2 */}
             <div className="bg-brand-bg border border-brand-border rounded-lg p-10 flex flex-col items-start relative overflow-hidden">
-              <div className="bg-brand-accent text-brand-black text-xs uppercase font-bold px-3 py-1.5 rounded-sm tracking-wider mb-8">MEJOR ROI</div>
-              <div className="text-4xl mb-4">🏢</div>
-              <h3 className="font-serif text-3xl text-brand-black mb-2">Inmobiliarias</h3>
-              <p className="text-brand-gray text-sm mb-6">Agencias y promotoras.</p>
-              <p className="font-semibold text-brand-black leading-relaxed mb-10">Responde en 3 segundos a cada lead de Idealista o Fotocasa. Agenda visitas automáticamente.</p>
+              <div className="bg-brand-accent text-brand-black text-xs uppercase font-bold px-3 py-1.5 rounded-sm tracking-wider mb-8">MAYOR CONVERSIÓN</div>
+              <div className="text-4xl mb-4">📈</div>
+              <h3 className="font-serif text-3xl text-brand-black mb-2">Captación de leads</h3>
+              <p className="text-brand-gray text-sm mb-6">Web, redes sociales, email, WhatsApp.</p>
+              <p className="font-semibold text-brand-black leading-relaxed mb-10">Responde, cualifica y agenda sin intervención humana.</p>
               <div className="mt-auto w-full pt-6 border-t border-brand-border/50 text-sm text-brand-gray">
-                <span className="font-semibold text-brand-black">ROI 8×</span> en 3 meses · Sector en boom 2026
+                <span className="font-semibold text-brand-black">ROI 6×</span> en 90 días · 0 leads perdidos
               </div>
             </div>
 
-            {/* Sector 3 */}
+            {/* Card 3 */}
             <div className="bg-brand-bg border border-brand-border rounded-lg p-10 flex flex-col items-start relative overflow-hidden">
               <div className="bg-brand-accent text-brand-black text-xs uppercase font-bold px-3 py-1.5 rounded-sm tracking-wider mb-8">MAYOR AHORRO</div>
-              <div className="text-4xl mb-4">📋</div>
-              <h3 className="font-serif text-3xl text-brand-black mb-2">Gestorías y despachos</h3>
-              <p className="text-brand-gray text-sm mb-6">Asesorías, gestorías, despachos.</p>
-              <p className="font-semibold text-brand-black leading-relaxed mb-10">Tu equipo deja de ser un procesador de PDFs y vuelve a ser asesor.</p>
+              <div className="text-4xl mb-4">💬</div>
+              <h3 className="font-serif text-3xl text-brand-black mb-2">Atención al cliente</h3>
+              <p className="text-brand-gray text-sm mb-6">Soporte 24/7 sin ampliar equipo.</p>
+              <p className="font-semibold text-brand-black leading-relaxed mb-10">Tu equipo deja de apagar fuegos y empieza a cerrar ventas.</p>
               <div className="mt-auto w-full pt-6 border-t border-brand-border/50 text-sm text-brand-gray">
-                17h/sem ahorradas · <span className="font-semibold text-brand-black">3.400€/mes</span> por gestoría
+                <span className="font-semibold text-brand-black">3.200€/mes</span> ahorrados en soporte
               </div>
             </div>
           </div>
@@ -316,7 +391,7 @@ export default function LandingSections() {
               </div>
               <div className="flex-col flex divide-y divide-brand-border/50">
                 <div className="p-5 flex flex-col md:flex-row justify-between items-center text-center gap-2">
-                  <span className="text-xs uppercase tracking-wider text-brand-gray">Coste mensual</span>
+                  <span className="text-xs uppercase tracking-wider text-brand-gray">Inversión mensual</span>
                   <span className="font-semibold text-brand-gray">1.800 – 2.400€</span>
                 </div>
                 <div className="p-5 flex flex-col md:flex-row justify-between items-center text-center gap-2 bg-brand-bg/30">
@@ -335,10 +410,6 @@ export default function LandingSections() {
                   <span className="text-xs uppercase tracking-wider text-brand-gray">Fatiga/Errores</span>
                   <span className="font-semibold text-brand-gray">Sí</span>
                 </div>
-                <div className="p-5 flex flex-col md:flex-row justify-between items-center text-center gap-2 bg-brand-bg/30">
-                  <span className="text-xs uppercase tracking-wider text-brand-gray">Escalabilidad</span>
-                  <span className="font-semibold text-brand-gray">+2.000€/mes</span>
-                </div>
               </div>
             </div>
 
@@ -349,7 +420,7 @@ export default function LandingSections() {
               </div>
               <div className="flex-col flex divide-y divide-brand-border/50">
                 <div className="p-5 flex flex-col md:flex-row justify-between items-center text-center gap-2">
-                  <span className="text-xs uppercase tracking-wider text-brand-gray">Coste mensual</span>
+                  <span className="text-xs uppercase tracking-wider text-brand-gray">Inversión mensual</span>
                   <span className="font-semibold text-brand-black text-lg">297 – 897€</span>
                 </div>
                 <div className="p-5 flex flex-col md:flex-row justify-between items-center text-center gap-2 bg-brand-bg/30">
@@ -368,10 +439,6 @@ export default function LandingSections() {
                   <span className="text-xs uppercase tracking-wider text-brand-gray">Fatiga/Errores</span>
                   <span className="font-semibold text-brand-black">No</span>
                 </div>
-                <div className="p-5 flex flex-col md:flex-row justify-between items-center text-center gap-2 bg-brand-bg/30">
-                  <span className="text-xs uppercase tracking-wider text-brand-gray">Escalabilidad</span>
-                  <span className="font-semibold text-brand-black">+50€/mes</span>
-                </div>
               </div>
             </div>
           </div>
@@ -379,6 +446,15 @@ export default function LandingSections() {
           <p className="mt-12 font-serif text-xl text-center text-brand-gray max-w-2xl mx-auto reveal">
             "No se trata de sustituir a tu equipo. Se trata de liberarlo de lo que no debería estar haciendo."
           </p>
+          
+          <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px' }} className="reveal">
+            <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=precios" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+              ¿QUÉ PACK ENCAJA MEJOR CON MI NEGOCIO? &rarr;
+            </a>
+            <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
+              Sin compromiso &middot; 30 min &middot; Si no encajamos, te lo decimos en 5 min
+            </p>
+          </div>
         </div>
       </section>
 
@@ -386,7 +462,8 @@ export default function LandingSections() {
       <section id="proceso" className="w-full bg-brand-white py-20 md:py-32 content-layer overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-brand-black mb-20 max-w-4xl mx-auto leading-tight reveal">
-            De "no sé por dónde empezar" a facturando solo. En 14 días.
+            <span className="block text-brand-accent text-sm uppercase tracking-widest mb-4 font-bold">Para escalar tu negocio</span>
+            De "no sé por dónde empezar" a facturando solo, en solo 14 días.
           </h2>
 
           <div className="relative">
@@ -397,7 +474,7 @@ export default function LandingSections() {
               <div className="flex flex-col md:items-center relative bg-brand-white">
                 <div className="font-serif text-[3.5rem] leading-none text-brand-accent mb-4">01</div>
                 <h3 className="font-sans font-semibold text-lg text-brand-black mb-3">Auditoría gratuita <span className="md:block text-brand-gray font-normal">(30 min)</span></h3>
-                <p className="text-brand-gray text-sm md:px-4">Te hacemos preguntas, entendemos tu cuello de botella, te decimos si podemos ayudarte o no. Sin humo.</p>
+                <p className="text-brand-gray text-sm md:px-4">Te hacemos preguntas, entendemos tu cuello de botella, te decimos si podemos ayudarte o no.</p>
               </div>
 
               {/* Step 2 */}
@@ -430,14 +507,33 @@ export default function LandingSections() {
         <SectionGrain />
         <div className="max-w-[800px] mx-auto px-6 relative z-10 reveal">
           <div className="bg-brand-white border border-brand-border border-t-[3px] border-t-brand-accent rounded-lg p-10 md:p-14 text-center shadow-sm">
-            <div className="mx-auto w-16 h-16 bg-brand-bg rounded-full flex items-center justify-center mb-8">
-              <Shield className="w-8 h-8 text-brand-black" strokeWidth={1.5} />
+            <div className="mx-auto w-24 h-24 mb-8 relative flex items-center justify-center">
+              <svg viewBox="0 0 180 180" className="w-full h-full">
+                {/* Exterior */}
+                <circle cx="90" cy="90" r="87" fill="#111111" stroke="#AAFF00" strokeWidth="3" />
+                {/* Star */}
+                <path d="M90 15 L98 45 L128 45 L105 65 L115 95 L90 75 L65 95 L75 65 L52 45 L82 45 Z" fill="#AAFF00" fillOpacity="0.15" />
+                {/* Interior border */}
+                <circle cx="90" cy="90" r="80" fill="none" stroke="#AAFF00" strokeWidth="1.5" />
+                {/* Text paths */}
+                <path id="topText" d="M 90 90 m -65, 0 a 65,65 0 1,1 130,0" fill="none" />
+                <path id="bottomText" d="M 90 90 m -65, 0 a 65,65 0 1,0 130,0" fill="none" />
+                <text fill="#AAFF00" fontSize="11" fontWeight="700" letterSpacing="1" className="uppercase">
+                  <textPath href="#topText" startOffset="12%">GARANTÍA TOTAL · 30 DÍAS —</textPath>
+                </text>
+                <text fill="#AAFF00" fontSize="10" fontWeight="700" letterSpacing="1" className="uppercase">
+                  <textPath href="#bottomText" startOffset="10%">100% DEVUELTO · ASEGURADO</textPath>
+                </text>
+                {/* Center */}
+                <text x="90" y="88" textAnchor="middle" fill="#FFFFFF" fontSize="32" fontWeight="bold">✓</text>
+                <text x="90" y="108" textAnchor="middle" fill="#AAFF00" fontSize="9" fontWeight="bold" letterSpacing="3" className="uppercase">GARANTIZADO</text>
+              </svg>
             </div>
             <h2 className="font-serif text-[clamp(2rem,3vw,2.5rem)] text-brand-black leading-tight mb-6">
-              Garantía: o lo arreglamos o te devolvemos el setup.
+              O cumplimos o te devolvemos el dinero. Asegurado.
             </h2>
             <p className="text-brand-gray text-lg leading-relaxed">
-              Si en 30 días desde la entrega tu sistema no cumple con los KPIs firmados en el blueprint, tienes dos opciones: (1) Lo reconstruimos a tu medida sin coste adicional hasta que cumpla. (2) Te devolvemos el 100% del setup. Sin preguntas raras. Sin letra pequeña.
+              Si en 30 días desde la entrega no ves resultados, te devolvemos el dinero completo. Sin preguntas. Sin letra pequeña.
             </p>
           </div>
         </div>
@@ -454,9 +550,9 @@ export default function LandingSections() {
             {[
               { q: "¿Y si mis clientes notan que es una IA y se molestan?", a: "No los vamos a engañar. El agente se presenta como asistente digital del negocio. El 94% de usuarios prefieren ser atendidos rápido por una IA competente que esperar 20 minutos a un humano. La clave está en que la IA sepa cuándo traspasar a humano, y eso lo configuramos juntos." },
               { q: "¿Funciona con mi CRM actual?", a: "Sí, conectamos con HubSpot, Pipedrive, Salesforce, GHL, Holded, Zoho, Odoo y cualquier CRM que tenga API. Si tu CRM es de 2005 y no tiene API, te recomendamos migrar y te ayudamos con ello." },
-              { q: "¿Qué pasa si se cae el sistema un fin de semana?", a: "Redundancia: si un proveedor falla, el sistema escala automáticamente a backup. Monitorización 24/7 con alertas. Garantía de uptime 99.5% o superior según el nivel de servicio." },
-              { q: "¿Puedo cancelar cuando quiera?", a: "Tras los primeros 3 meses de compromiso, cancelas mes a mes con 30 días de preaviso. Sin penalizaciones, sin permanencias raras." },
-              { q: "¿Dónde están mis datos?", a: "Servidores EU (Frankfurt, Dublín). Cumplimiento RGPD total. Nunca entrenamos modelos globales con tus datos. Cifrado end-to-end en tránsito y reposo." },
+              { q: "¿Qué pasa si se cae el sistema un fin de semana?", a: "Igual que tu coche tiene rueda de repuesto, tu sistema tiene 'repuestos digitales'. Si algo falla, automáticamente entra el respaldo y sigue funcionando como si nada. Además, lo vigilamos 24/7. Si pasa algo raro un domingo a las 3 de la mañana, nos llega un aviso al móvil y lo solucionamos antes de que abras el lunes. Te garantizamos por escrito que tu sistema estará operativo el 99,5% del tiempo." },
+              { q: "¿Puedo cancelar cuando quiera?", a: "Sí, pasados los primeros 90 días. Después, mes a mes con 30 días de aviso. Sin penalizaciones ni permanencias. ¿Por qué 90 días? Porque montar el sistema bien hecho lleva tiempo y queremos que veas resultados reales antes de juzgar. Spoiler: por lo que cuesta y lo que ahorra, nadie se baja del barco una vez lo prueba, lo verás tú mismo." },
+              { q: "¿Dónde están mis datos?", a: "Tranquilo, esta es una de las preguntas que más nos hacen y es normal: Tus datos viven en servidores europeos (Alemania e Irlanda), donde la ley de protección de datos es la más estricta del planeta. Nada se va ni a EEUU, ni a China, ni nada por el estilo. Y lo más importante: tus datos son tuyos. No los usamos para entrenar a ningún ChatGPT ni IA pública. Solo trabajan para tu negocio (lo firmamos contigo). Si algún día decides irte, te los llevas todos. Por último, tanto cuando se mueven como cuando se almacenan, están cifrados. En cristiano: si alguien intentara robarlos, vería un montón de letras sin sentido y no podría hacer nada." },
               { q: "¿Cuánto tardo en ver retorno?", a: "Cliente medio: ROI positivo en mes 2. Clínicas: habitualmente en mes 1 gracias a la reducción de no-shows y captura de llamadas fuera de horario." }
             ].map((faq, idx) => (
               <div 
@@ -492,13 +588,26 @@ export default function LandingSections() {
             O puedes seguir contestando llamadas mientras tu competencia te come. Tú decides.
           </p>
           
-          <button className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 mb-8 w-full md:w-auto">
-            Agendar auditoría gratis
-          </button>
-          
-          <p className="text-sm text-brand-gray max-w-xl mx-auto">
-            Sin compromiso. Sin humo. Sin vendedores agresivos. Si no podemos ayudarte, te lo decimos en los primeros 5 minutos.
-          </p>
+          <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px' }}>
+            <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=final" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+              RESERVAR MIS 30 MIN DE AUDITORÍA CON NEXORA &rarr;
+            </a>
+            <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
+              Sin compromiso &middot; 30 min &middot; Si no encajamos, te lo decimos en 5 min
+            </p>
+          </div>
+
+          <div style={{ width: '100%', maxWidth: '900px', margin: '40px auto 0', borderRadius: '12px', overflow: 'hidden' }}>
+            <iframe
+              src="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=final"
+              width="100%"
+              height="700px"
+              frameBorder="0"
+              style={{ border: 'none', borderRadius: '12px', minHeight: '700px', background: 'transparent' }}
+              allow="camera; microphone; payment"
+              className="md:h-[700px] h-[900px]"
+            ></iframe>
+          </div>
         </div>
       </section>
 
