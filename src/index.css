@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg: #EAEAEA;
+  --white: #FFFFFF;
+  --black: #111111;
+  --gray: #666666;
+  --accent: #B4FF00;
+  --border-clr: rgba(0,0,0,0.08); /* Aliased to avoid clash with CSS border property */
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  
+  --color-canvas: #F5F5F5;
+  --color-ink: #000000;
+
+  --color-brand-bg: var(--bg);
+  --color-brand-white: var(--white);
+  --color-brand-black: var(--black);
+  --color-brand-gray: var(--gray);
+  --color-brand-accent: var(--accent);
+  --color-brand-border: var(--border-clr);
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Texture Overlays */
+.bg-grain::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 50; 
+  mix-blend-mode: multiply;
+}
+
+.bg-halftone::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(#d4d4d4 1px, transparent 1px);
+  background-size: 8px 8px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content stays above the halftone but under the grain */
+.content-layer {
+  position: relative;
+  z-index: 10;
+}
+
+/* Custom Scroll Reveal */
+.reveal, .reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.reveal.is-visible, .reveal-stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-stagger > *, .faq-content {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Delay staggered items */
+.reveal-stagger.is-visible > :nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.is-visible > :nth-child(2) { transition-delay: 0.15s; }
+.reveal-stagger.is-visible > :nth-child(3) { transition-delay: 0.25s; }
+.reveal-stagger.is-visible > :nth-child(4) { transition-delay: 0.35s; }
+.reveal-stagger.is-visible > :nth-child(5) { transition-delay: 0.45s; }
+.reveal-stagger.is-visible > :nth-child(6) { transition-delay: 0.55s; }
+
+/* Custom Accordion */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+.faq-item.active .faq-content {
+  max-height: 300px; /* arbitrary max height for smooth transition */
+}
