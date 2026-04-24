@@ -158,7 +158,7 @@ export default function LandingSections() {
       <section id="stats" className="w-full bg-brand-white border-y border-brand-border py-16 md:py-24 relative content-layer">
         <div className="max-w-[1440px] mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
           <AnimatedCounter end={72} text="Pymes españolas sin IA. Adelantate a tu competencia." suffix="%" />
-          <AnimatedCounter end={9880} text="Ahorro medio/mes por negocio automatizado" suffix="€" />
+          <AnimatedCounter end={2880} text="Ahorro medio/mes por negocio automatizado" suffix="€" />
           <AnimatedCounter end={12} text="ROI desde el primer mes" isRange={false} suffix="×" />
         </div>
       </section>
@@ -177,7 +177,7 @@ export default function LandingSections() {
               <div className="bg-brand-accent text-brand-black text-[0.7rem] uppercase font-bold px-3 py-1 rounded-full mb-6 flex items-center gap-2 tracking-wider">
                 <span>📞</span> LLAMADAS PERDIDAS
               </div>
-              <h3 className="font-serif font-semibold text-2xl text-brand-black mb-3">Llamadas perdidas.</h3>
+              <h3 className="font-serif font-semibold text-2xl text-brand-black mb-3">62% de llamadas perdidas.</h3>
               <p className="text-brand-gray">De las llamadas a negocios después de las 18:00 gran parte se pierden. Cada llamada tiene un valor estimado de 400€ tirados a la basura.</p>
             </div>
             
@@ -196,7 +196,7 @@ export default function LandingSections() {
                 <span>⏱️</span> HORAS MUERTAS
               </div>
               <h3 className="font-serif font-semibold text-2xl text-brand-black mb-3">18 horas semanales.</h3>
-              <p className="text-brand-gray">Tu gente pasa 18 horas a la semana haciendo lo mismo. Copiando datos. Mandando emails. Facturando. Esas horas cuestan 9.880€ al mes.</p>
+              <p className="text-brand-gray">Tu gente pasa 18 horas a la semana haciendo lo mismo. Copiando datos. Mandando emails. Facturando. Esas horas cuestan 2.880€ al mes.</p>
             </div>
           </div>
 

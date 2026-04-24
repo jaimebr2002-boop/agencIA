@@ -203,13 +203,6 @@ export default function App() {
         </p>
       </div>
 
-      {/* Floating mobile button */}
-      <div id="cta-flotante" className="md:hidden fixed bottom-0 left-0 w-full z-[999] p-3 text-center bg-[#111111] border-t border-[#222222]">
-        <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=flotante" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] py-3 rounded hover:bg-brand-white transition-colors duration-300 block w-full text-sm">
-          RESERVAR MIS 30 MIN &rarr;
-        </a>
-      </div>
-
       {/* Logo Strip Section */}
       <section className="w-full border-y border-ink bg-[#F5F5F5] z-50 relative">
         <div className="flex flex-col items-center w-full px-6 pt-2 pb-10 md:pt-3 md:pb-12 max-w-[1440px] mx-auto content-layer gap-2 md:gap-3">
@@ -285,15 +278,14 @@ export default function App() {
               { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776896944/gohighlevel-logo-1024x232_rxrpha.png", alt: "GoHighLevel logo" },
               { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776897328/1fbcdb65-c2aa-44ae-97f7-0d064e3ef1c4_nzdysm.png", alt: "Retell AI logo" },
               { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776897945/ChatGPT-Vertical-Logo-Vector.svg-_c6kjdd.png", alt: "ChatGPT logo", mixBlend: true },
-              { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1777023032/1756747824194_j59ywl.png", alt: "Nano Banana logo", isNanoBanana: true, customScale: "scale-[1.4]" }
+              { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1777023032/1756747824194_j59ywl.png", alt: "Nano Banana logo", isNanoBanana: true, customScale: "scale-[1.25]" }
             ].map((logo, idx) => (
-              <div key={idx} className="bg-[#ffffff] rounded-[10px] border-[0.5px] border-[#e0ddd7] w-full h-[80px] p-2 flex items-center justify-center">
+              <div key={idx} className="bg-[#ffffff] rounded-[10px] border-[0.5px] border-[#e0ddd7] w-full h-[80px] p-2 flex items-center justify-center overflow-hidden">
                 <img 
                   src={logo.src} 
                   alt={logo.alt} 
-                  className={`object-contain select-none ${logo.mixBlend ? 'mix-blend-multiply' : ''} ${logo.isNanoBanana ? 'w-full max-h-[192px] p-2' : 'w-full h-full'} ${logo.customScale || ''}`}
+                  className={`object-contain select-none ${logo.mixBlend ? 'mix-blend-multiply' : ''} w-full h-full ${logo.customScale || ''}`}
                   referrerPolicy="no-referrer"
-                  style={logo.isNanoBanana ? { objectFit: 'contain', objectPosition: 'center' } : {}}
                 />
               </div>
             ))}
