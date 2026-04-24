@@ -323,6 +323,129 @@ export default function LandingSections() {
         </div>
       </section>
 
+      {/* AGENTES DE IA */}
+      <section id="agentes" className="w-full bg-[#f0eeea] py-[80px] px-[40px] max-md:px-6 content-layer">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="flex flex-col items-center text-center mb-16">
+            <div className="bg-brand-white border border-[#d8d5cf] shadow-sm rounded-full px-4 py-1.5 flex items-center gap-3 mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#CCFF00] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#CCFF00]"></span>
+              </span>
+              <span className="text-sm font-medium text-[#111111]">Lo más buscado ahora mismo</span>
+            </div>
+            <p className="text-[11px] text-[#888888] uppercase tracking-[0.2em] font-bold mb-4">AGENTES DE INTELIGENCIA ARTIFICIAL</p>
+            <h2 className="font-serif text-[clamp(2.5rem,4vw,3.5rem)] text-[#111111] leading-tight mb-4">Tu equipo trabaja. El agente no para nunca.</h2>
+            <p className="text-[16px] text-[#555555] max-w-2xl mx-auto">Un agente de IA no es un chatbot. Es un empleado digital que toma decisiones, actúa y entrega resultados — solo, sin que nadie lo vigile.</p>
+          </div>
+
+          {/* Grid: 2 cols */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+            {/* Left Col - Large Dark Card */}
+            <div className="bg-[#111111] rounded-[12px] p-8 md:p-10 relative flex flex-col justify-between overflow-hidden">
+              <div>
+                <div className="flex flex-wrap justify-between items-start gap-4 mb-8">
+                  <span className="bg-[#CCFF00] text-[#1a2200] text-[10px] uppercase font-bold px-3 py-1.5 rounded-full">Más solicitado</span>
+                </div>
+                <h3 className="font-serif text-3xl text-white mb-4">Agente de Voz IA</h3>
+                <p className="text-gray-400 text-sm leading-relaxed mb-8">Contesta tu teléfono 24/7 con voz natural en español. Entiende el contexto, califica al cliente, agenda citas y traspasa a humano cuando hace falta.</p>
+              </div>
+              
+              <div>
+                <hr className="border-gray-800 mb-8" />
+                <ul className="space-y-4 mb-8">
+                  {["Responde en menos de 1 segundo", "Agenda directamente en tu calendario", "Califica leads y traspasa en caliente", "Integrado con tu CRM actual"].map((feat, i) => (
+                    <li key={i} className="flex items-center gap-3 text-gray-300 text-sm">
+                      <span className="flex-shrink-0 w-4 h-4 rounded-full bg-[#CCFF00] flex items-center justify-center">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#111111]"></span>
+                      </span>
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2">
+                  {["Retell AI", "HighLevel", "Cal.com"].map((tag, i) => (
+                    <span key={i} className="bg-[#222222] text-gray-400 text-xs px-3 py-1 rounded-md">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Col - Stacked Cards */}
+            <div className="flex flex-col gap-6">
+              {/* Top Right Card */}
+              <div className="bg-[#ffffff] border-[0.5px] border-[#d8d5cf] rounded-[12px] p-8 md:p-10 flex flex-col justify-between flex-1">
+                <div className="mb-6">
+                  <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
+                    <span className="bg-[#CCFF00] text-[#1a2200] text-[10px] uppercase font-bold px-3 py-1.5 rounded-full">Captación automatizada</span>
+                  </div>
+                  <h3 className="font-serif text-2xl text-brand-black mb-3">Agente de Prospección IA</h3>
+                  <p className="text-[#555555] text-sm leading-relaxed">Encuentra leads, les escribe emails hiperpersonalizados con IA y te los entrega calientes. Miles por semana, sin que muevas un dedo.</p>
+                </div>
+                <ul className="space-y-3">
+                  {["Emails con contexto real del lead", "Seguimientos automáticos", "Resultados desde la semana 1"].map((feat, i) => (
+                    <li key={i} className="flex items-center gap-3 text-brand-black text-sm">
+                      <span className="flex-shrink-0 w-3.5 h-3.5 rounded-full bg-[#CCFF00] flex items-center justify-center">
+                        <span className="w-1 h-1 rounded-full bg-[#111111]"></span>
+                      </span>
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Bottom Right Card */}
+              <div className="bg-[#ffffff] border-[0.5px] border-[#d8d5cf] rounded-[12px] p-8 md:p-10 flex flex-col justify-between flex-1">
+                <div className="mb-6">
+                  <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
+                    <span className="bg-[#CCFF00] text-[#1a2200] text-[10px] uppercase font-bold px-3 py-1.5 rounded-full">Atención al cliente</span>
+                  </div>
+                  <h3 className="font-serif text-2xl text-brand-black mb-3">Agente WhatsApp & Web</h3>
+                  <p className="text-[#555555] text-sm leading-relaxed">Tu cliente pregunta. El agente responde en 3 segundos. Integrado con tu calendario, sistema de pagos y CRM.</p>
+                </div>
+                <ul className="space-y-3">
+                  {["Atención 24/7 sin contratar a nadie", "Cierra ventas mientras duermes", "Sin coste por cada conversación"].map((feat, i) => (
+                    <li key={i} className="flex items-center gap-3 text-brand-black text-sm">
+                      <span className="flex-shrink-0 w-3.5 h-3.5 rounded-full bg-[#CCFF00] flex items-center justify-center">
+                        <span className="w-1 h-1 rounded-full bg-[#111111]"></span>
+                      </span>
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* 3 Metrics */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div className="bg-[#ffffff] rounded-[12px] p-8 text-center border-[0.5px] border-[#d8d5cf]">
+              <div className="font-serif text-4xl text-[#111111] mb-2">24/7</div>
+              <p className="text-[#555555] text-sm">Operativo sin descanso ni bajas ni vacaciones</p>
+            </div>
+            <div className="bg-[#ffffff] rounded-[12px] p-8 text-center border-[0.5px] border-[#d8d5cf]">
+              <div className="font-serif text-4xl text-[#111111] mb-2">&lt; 1s</div>
+              <p className="text-[#555555] text-sm">Tiempo de respuesta en voz y texto</p>
+            </div>
+            <div className="bg-[#ffffff] rounded-[12px] p-8 text-center border-[0.5px] border-[#d8d5cf]">
+              <div className="font-serif text-4xl text-[#111111] mb-2">14d</div>
+              <p className="text-[#555555] text-sm">De cero a agente funcionando en tu negocio</p>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div style={{ textAlign: 'center', margin: '48px auto 0', maxWidth: '600px' }}>
+            <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=agentes" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+              QUIERO UN AGENTE EN MI NEGOCIO &rarr;
+            </a>
+            <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
+              Sin compromiso &middot; 30 min &middot; Si no encajamos, te lo decimos en 5 min
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 6. NICHOS / SECTORES */}
       <section id="sectores" className="w-full bg-brand-white py-20 md:py-32 content-layer">
         <div className="max-w-7xl mx-auto px-6">

@@ -8,9 +8,9 @@ export default function App() {
   const navLinks = [
     { label: 'El problema', href: '#problema' },
     { label: 'Servicios', href: '#servicios' },
+    { label: 'Agentes de IA', href: '#agentes' },
     { label: 'Sectores', href: '#sectores' },
     { label: 'Cómo funciona', href: '#proceso' },
-    { label: 'Garantía', href: '#garantia' },
     { label: 'FAQ', href: '#faq' },
   ];
 
