@@ -28,7 +28,7 @@ export default function App() {
       {/* TopNavBar */}
       <header className="fixed top-0 w-full z-[999]" style={{ backgroundColor: 'rgba(234,234,234,0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
         <div className="w-full h-20 max-w-[1440px] mx-auto px-6 md:px-8 flex justify-between items-center relative">
-          <a href="#hero" onClick={(e) => handleSmoothScroll(e, '#hero')} className="translate-y-[2px]" style={{ fontFamily: 'var(--font-serif)', fontSize: '24px', fontWeight: 700, color: '#111111' }}>
+          <a href="#hero" onClick={(e) => handleSmoothScroll(e, '#hero')} className="translate-y-[2px] text-[28px] md:text-[24px]" style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, color: '#111111' }}>
             NEXORA<sup style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: 400 }}>®</sup>
           </a>
           
@@ -217,8 +217,9 @@ export default function App() {
             INTEGRADO CON LAS MEJORES PLATAFORMAS
           </p>
           
-          <div className="flex flex-row flex-wrap xl:flex-nowrap justify-center items-center gap-x-6 md:gap-x-8 lg:gap-x-10 gap-y-6 px-2 md:px-4 w-full">
-            <div className="h-8 md:h-11 lg:h-12 flex items-center justify-center mix-blend-multiply shrink-0">
+          {/* Desktop Logos Container */}
+          <div className="hidden md:flex flex-row flex-wrap xl:flex-nowrap justify-center items-center gap-x-8 lg:gap-x-10 gap-y-6 px-4 w-full">
+            <div className="h-11 lg:h-12 flex items-center justify-center mix-blend-multiply shrink-0">
               <img 
                 src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776897946/IMG_1441_d37szu.jpg" 
                 alt="Higgsfield logo" 
@@ -229,34 +230,34 @@ export default function App() {
             <img 
               src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776896944/N8n-logo-new.svg_bmzgka.png" 
               alt="n8n logo" 
-              className="h-9 md:h-12 lg:h-[52px] w-auto object-contain select-none translate-y-0.5 md:translate-y-1 shrink-0"
+              className="h-12 lg:h-[52px] w-auto object-contain select-none translate-y-1 shrink-0"
               referrerPolicy="no-referrer"
             />
             <img 
               src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776896023/make-logo-png_seeklogo-506859_kfniqp.png" 
               alt="Make logo" 
-              className="h-[110px] md:h-[130px] lg:h-[150px] w-auto object-contain select-none shrink-0"
+              className="h-[130px] lg:h-[150px] w-auto object-contain select-none shrink-0"
               referrerPolicy="no-referrer"
             />
             <img 
               src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776896944/Claude_AI_logo.svg_sdvulm.png" 
               alt="Claude AI logo" 
-              className="h-7 md:h-9 lg:h-10 w-auto object-contain select-none shrink-0"
+              className="h-9 lg:h-10 w-auto object-contain select-none shrink-0"
               referrerPolicy="no-referrer"
             />
             <img 
               src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776896944/gohighlevel-logo-1024x232_rxrpha.png" 
               alt="GoHighLevel logo" 
-              className="h-6 md:h-8 lg:h-9 w-auto object-contain select-none shrink-0"
+              className="h-8 lg:h-9 w-auto object-contain select-none shrink-0"
               referrerPolicy="no-referrer"
             />
             <img 
               src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776897328/1fbcdb65-c2aa-44ae-97f7-0d064e3ef1c4_nzdysm.png" 
               alt="Retell AI logo" 
-              className="h-5 md:h-7 lg:h-8 w-auto object-contain select-none shrink-0 translate-y-0.5 md:translate-y-1"
+              className="h-7 lg:h-8 w-auto object-contain select-none shrink-0 translate-y-1"
               referrerPolicy="no-referrer"
             />
-            <div className="h-7 md:h-9 lg:h-10 flex items-center justify-center mix-blend-multiply shrink-0 translate-y-0.5 md:translate-y-1">
+            <div className="h-9 lg:h-10 flex items-center justify-center mix-blend-multiply shrink-0 translate-y-1">
               <img 
                 src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776897945/ChatGPT-Vertical-Logo-Vector.svg-_c6kjdd.png" 
                 alt="ChatGPT logo" 
@@ -264,6 +265,38 @@ export default function App() {
                 referrerPolicy="no-referrer"
               />
             </div>
+            <div className="h-16 lg:h-20 flex items-center justify-center shrink-0">
+              <img 
+                src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1777023032/1756747824194_j59ywl.png" 
+                alt="Nano Banana logo" 
+                className="h-full w-auto object-contain select-none"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </div>
+
+          {/* Mobile Logos Container */}
+          <div className="md:hidden grid grid-cols-2 gap-2.5 w-full px-4">
+            {[
+              { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776897946/IMG_1441_d37szu.jpg", alt: "Higgsfield logo", mixBlend: true },
+              { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776896944/N8n-logo-new.svg_bmzgka.png", alt: "n8n logo" },
+              { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776896023/make-logo-png_seeklogo-506859_kfniqp.png", alt: "Make logo", customScale: "scale-[1.8]" },
+              { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776896944/Claude_AI_logo.svg_sdvulm.png", alt: "Claude AI logo" },
+              { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776896944/gohighlevel-logo-1024x232_rxrpha.png", alt: "GoHighLevel logo" },
+              { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776897328/1fbcdb65-c2aa-44ae-97f7-0d064e3ef1c4_nzdysm.png", alt: "Retell AI logo" },
+              { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1776897945/ChatGPT-Vertical-Logo-Vector.svg-_c6kjdd.png", alt: "ChatGPT logo", mixBlend: true },
+              { src: "https://res.cloudinary.com/dfbsqy5ul/image/upload/v1777023032/1756747824194_j59ywl.png", alt: "Nano Banana logo", isNanoBanana: true, customScale: "scale-[1.4]" }
+            ].map((logo, idx) => (
+              <div key={idx} className="bg-[#ffffff] rounded-[10px] border-[0.5px] border-[#e0ddd7] w-full h-[80px] p-2 flex items-center justify-center">
+                <img 
+                  src={logo.src} 
+                  alt={logo.alt} 
+                  className={`object-contain select-none ${logo.mixBlend ? 'mix-blend-multiply' : ''} ${logo.isNanoBanana ? 'w-full max-h-[192px] p-2' : 'w-full h-full'} ${logo.customScale || ''}`}
+                  referrerPolicy="no-referrer"
+                  style={logo.isNanoBanana ? { objectFit: 'contain', objectPosition: 'center' } : {}}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
