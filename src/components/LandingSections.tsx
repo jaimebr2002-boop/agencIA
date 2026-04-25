@@ -539,7 +539,7 @@ export default function LandingSections() {
             {/* IA */}
             <div className="bg-brand-white border-2 border-brand-black border-t-4 border-t-brand-accent rounded-lg overflow-hidden flex flex-col shadow-lg relative -translate-y-2 md:-translate-y-4">
               <div className="p-6 bg-brand-black text-center">
-                <h3 className="font-serif text-xl text-brand-white">Empleado IA — FORJA</h3>
+                <h3 className="font-serif text-xl text-brand-white">Empleado IA — IMPULSA</h3>
               </div>
               <div className="flex-col flex divide-y divide-brand-border/50">
                 <div className="p-5 flex flex-col md:flex-row justify-between items-center text-center gap-2">
@@ -713,7 +713,7 @@ export default function LandingSections() {
           
           <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px' }}>
             <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=final" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
-              RESERVAR MIS 30 MIN DE AUDITORÍA CON NEXORA &rarr;
+              RESERVAR MIS 30 MIN DE AUDITORÍA CON IMPULSA &rarr;
             </a>
             <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
               Sin compromiso &middot; 30 min &middot; Si no encajamos, te lo decimos en 5 min
@@ -739,17 +739,22 @@ export default function LandingSections() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20 text-center md:text-left">
             <div className="flex flex-col items-center md:items-start reveal">
-              <a href="#" className="text-3xl font-black font-serif tracking-tighter text-brand-white mb-4">
-                NEXORA®
+              <a href="#" className="mb-4">
+                <img src="https://res.cloudinary.com/dfbsqy5ul/image/upload/v1777156756/quiero_quitar_el_202604252346_rxsy54.jpg" alt="Logo" className="h-20 w-20 object-contain" />
               </a>
-              <p className="text-brand-gray text-sm">Crafted with intent.</p>
+              <p className="text-brand-gray text-sm">Impulsa Studio.</p>
             </div>
             
-            <div className="flex flex-col items-center md:items-start gap-4 reveal">
+            <div className="flex flex-col items-center md:items-start gap-3 reveal">
+              <a href="#hero" className="text-sm text-brand-gray hover:text-brand-white uppercase tracking-wider transition-colors">Inicio</a>
+              <a href="#problema" className="text-sm text-brand-gray hover:text-brand-white uppercase tracking-wider transition-colors">El Problema</a>
+              <a href="#demo" className="text-sm text-brand-gray hover:text-brand-white uppercase tracking-wider transition-colors">Demo</a>
               <a href="#servicios" className="text-sm text-brand-gray hover:text-brand-white uppercase tracking-wider transition-colors">Servicios</a>
+              <a href="#agentes" className="text-sm text-brand-gray hover:text-brand-white uppercase tracking-wider transition-colors">Agentes IA</a>
               <a href="#sectores" className="text-sm text-brand-gray hover:text-brand-white uppercase tracking-wider transition-colors">Sectores</a>
               <a href="#proceso" className="text-sm text-brand-gray hover:text-brand-white uppercase tracking-wider transition-colors">Proceso</a>
               <a href="#garantia" className="text-sm text-brand-gray hover:text-brand-white uppercase tracking-wider transition-colors">Garantía</a>
+              <a href="#faq" className="text-sm text-brand-gray hover:text-brand-white uppercase tracking-wider transition-colors">FAQ</a>
             </div>
             
             <div className="flex justify-center md:justify-end gap-6 reveal">
@@ -772,7 +777,7 @@ export default function LandingSections() {
           </div>
           
           <div className="pt-8 border-t border-brand-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-brand-gray reveal">
-            <div>© 2026 NEXORA — Todos los derechos reservados</div>
+            <div>© 2026 IMPULSA — Todos los derechos reservados</div>
             <div className="hidden md:block">Servidores EU · RGPD · Cifrado end-to-end</div>
             <div>Hecho con IA. Implementado por humanos.</div>
           </div>

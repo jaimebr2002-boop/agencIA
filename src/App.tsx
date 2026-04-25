@@ -29,7 +29,7 @@ export default function App() {
       <header className="fixed top-0 w-full z-[999]" style={{ backgroundColor: 'rgba(234,234,234,0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
         <div className="w-full h-20 max-w-[1440px] mx-auto px-6 md:px-8 flex justify-between items-center relative">
           <a href="#hero" onClick={(e) => handleSmoothScroll(e, '#hero')} className="translate-y-[2px] text-[28px] md:text-[24px]" style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, color: '#111111' }}>
-            NEXORA<sup style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: 400 }}>®</sup>
+            IMPULSA STUDIO<sup style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: 400 }}>®</sup>
           </a>
           
           {/* Desktop Nav */}
@@ -142,7 +142,7 @@ export default function App() {
               lineHeight: 1
             }}
           >
-            NEXORA
+            IMPULSA
           </span>
         </div>
 
@@ -161,7 +161,7 @@ export default function App() {
               lineHeight: 1
             }}
           >
-            NEXORA
+            IMPULSA
           </span>
         </div>
 
