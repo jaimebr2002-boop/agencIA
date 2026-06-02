@@ -1,5 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import LandingSections from './components/LandingSections';
 
 export default function App() {
@@ -195,7 +195,7 @@ export default function App() {
       </main>
 
       <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px', padding: '0 24px' }} className="relative z-50">
-        <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=hero" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+        <a href="https://cal.com/jaime-bernaldez-reina/30min?utm_source=web&utm_medium=cta&utm_campaign=hero" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
           QUIERO VER CÓMO FUNCIONARÍA EN MI NEGOCIO &rarr;
         </a>
         <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>

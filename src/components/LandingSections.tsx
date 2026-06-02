@@ -211,7 +211,7 @@ export default function LandingSections() {
           </div>
           
           <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px' }} className="reveal">
-            <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=dolor" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+            <a href="https://cal.com/jaime-bernaldez-reina/30min?utm_source=web&utm_medium=cta&utm_campaign=dolor" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
               CALCULAR CUÁNTO ESTOY PERDIENDO (GRATIS) &rarr;
             </a>
             <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
@@ -241,7 +241,7 @@ export default function LandingSections() {
           </p>
 
           <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px' }} className="reveal">
-            <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=demo" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+            <a href="https://cal.com/jaime-bernaldez-reina/30min?utm_source=web&utm_medium=cta&utm_campaign=demo" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
               QUIERO TENER ESTO MONTADO EN MI NEGOCIO YA &rarr;
             </a>
             <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
@@ -436,7 +436,7 @@ export default function LandingSections() {
 
           {/* CTA */}
           <div style={{ textAlign: 'center', margin: '48px auto 0', maxWidth: '600px' }}>
-            <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=agentes" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+            <a href="https://cal.com/jaime-bernaldez-reina/30min?utm_source=web&utm_medium=cta&utm_campaign=agentes" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
               QUIERO UN AGENTE EN MI NEGOCIO &rarr;
             </a>
             <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
@@ -571,7 +571,7 @@ export default function LandingSections() {
           </p>
           
           <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px' }} className="reveal">
-            <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=precios" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+            <a href="https://cal.com/jaime-bernaldez-reina/30min?utm_source=web&utm_medium=cta&utm_campaign=precios" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
               ¿QUÉ PACK ENCAJA MEJOR CON MI NEGOCIO? &rarr;
             </a>
             <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
@@ -712,7 +712,7 @@ export default function LandingSections() {
           </p>
           
           <div style={{ textAlign: 'center', margin: '48px auto', maxWidth: '600px' }}>
-            <a href="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=final" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
+            <a href="https://cal.com/jaime-bernaldez-reina/30min?utm_source=web&utm_medium=cta&utm_campaign=final" target="_blank" className="bg-brand-accent text-brand-black font-bold uppercase tracking-[0.15em] px-10 py-5 rounded hover:bg-brand-white transition-colors duration-300 w-full md:w-auto inline-block">
               RESERVAR MIS 30 MIN DE AUDITORÍA CON IMPULSA &rarr;
             </a>
             <p style={{ marginTop: '12px', fontSize: '13px', color: '#888888', letterSpacing: '0.3px' }}>
@@ -722,7 +722,7 @@ export default function LandingSections() {
 
           <div style={{ width: '100%', maxWidth: '900px', margin: '40px auto 0', borderRadius: '12px', overflow: 'hidden' }}>
             <iframe
-              src="https://cal.com/clinca/reservas?utm_source=web&utm_medium=cta&utm_campaign=final"
+              src="https://cal.com/jaime-bernaldez-reina/30min?utm_source=web&utm_medium=cta&utm_campaign=final"
               width="100%"
               height="700px"
               frameBorder="0"
